@@ -1,0 +1,41 @@
+﻿<Window x:Class="QueueingSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:QueueingSystem"
+        mc:Ignorable="d"
+        Title="Курсова робота" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainView/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="5" Text="Максимальний час :"/>
+                <TextBox Margin="5" Grid.Column="1" Text="{Binding TMax}"/>
+        </Grid>
+        <Button Margin="5" Content="Імітувати" Command="{Binding ImitateCommand}" Grid.Column="1" Grid.Row="0"/>
+        <lvc:CartesianChart Grid.Column="0" Grid.Row="1" Series="{Binding ImitateSeries}">
+        </lvc:CartesianChart>
+
+        <lvc:CartesianChart Grid.Column="1" Grid.Row="1" Series="{Binding AnalyticalSeries}">
+        </lvc:CartesianChart>
+
+        <lvc:CartesianChart Grid.Column="2" Grid.Row="1" Series="{Binding NumericalSeries}">
+        </lvc:CartesianChart>
+    </Grid>
+</Window>
